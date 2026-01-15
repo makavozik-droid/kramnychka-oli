@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang=uk><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><title>Кошик — Крамничка Олі</title><link rel=stylesheet href=kramnychka-oli.c87f257f.css><body>
+  <header class=header>
+    <a class=logo href=index.html>Крамничка Олі</a>
+    <nav class=nav>
+      <a href=catalog.html>Магазин</a>
+      <a href=index.html#about>Про нас</a>
+      <a href=index.html#reviews>Відгуки</a>
+      <a href=cart.html class=cartLink>
+  Кошик <span class=cartBadge id=cartBadge aria-label="Кількість товарів у кошику"></span>
+</a>
+
+    </nav>
+    <a class=contact href=https://t.me/shop_shostka target=_blank rel=noopener>Telegram</a>
+  </header>
+
+  <main class=container>
+    <h1>Кошик</h1>
+
+    <section class=cart aria-label="Ваш кошик">
+      <div id=cartList></div>
+
+      <div class=cartSummary id=cartSummary>
+        <div class=cartSummary__row>
+          <span>Разом</span>
+          <strong id=totalPrice>0 грн</strong>
+        </div>
+
+        <a class=btnLink id=checkoutBtn href=checkout.html>Оформити замовлення</a>
+        <a class=link id=backToCatalog href=catalog.html>← Повернутися до каталогу</a>
+      </div>
+    </section>
+  </main>
+
+  <script type=module src=cart.f2c803da.js></script>
+
+

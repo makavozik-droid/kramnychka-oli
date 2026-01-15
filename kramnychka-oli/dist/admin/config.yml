@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: "src/content/uploads"
+public_folder: "content/uploads"
+
+locale: "uk"
+
+collections:
+  - name: "site"
+    label: "Контент сайту"
+    files:
+      - name: "products"
+        label: "Товари"
+        file: "src/content/products.json"
+        format: "json"
+        editor:
+          preview: false
+        fields:
+          - label: "Список товарів"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.priceUAH}} грн"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Назва", name: "name", widget: "string" }
+              - { label: "Ціна (грн)", name: "priceUAH", widget: "number", value_type: "int", min: 1 }
+              - { label: "Одиниця (шт/пара/м/пак)", name: "unit", widget: "string", default: "шт" }
+              - label: "Розділ"
+                name: "section"
+                widget: "select"
+                options:
+                  - { label: "Турбота про себе", value: "care" }
+                  - { label: "Для солодких снів та відпочинку", value: "rest" }
+                  - { label: "На прогулянку та в негоду", value: "outdoor" }
+                  - { label: "Господарські справи та город", value: "garden" }
+              - { label: "Підкатегорія", name: "category", widget: "string" }
+              - { label: "Оля рекомендує", name: "recommended", widget: "boolean", default: true }
+              - { label: "Фото", name: "image", widget: "image", required: false }
+
+      - name: "reviews"
+        label: "Відгуки"
+        file: "src/content/reviews.json"
+        format: "json"
+        editor:
+          preview: false
+        fields:
+          - label: "Список відгуків"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.author}}"
+            fields:
+              - { label: "Ім'я/Нік", name: "author", widget: "string" }
+              - { label: "Текст", name: "text", widget: "text" }
+              - { label: "Скріншот (за бажанням)", name: "image", widget: "image", required: false }
+              - { label: "Показувати на сайті", name: "visible", widget: "boolean", default: true }
