@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Відновлення доступу</title>
+</head>
+<body>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.init();
+
+      // відкриваємо саме recovery-форму
+      window.netlifyIdentity.open("recovery");
+
+      // коли користувач увійшов/оновив пароль — кидаємо в адмінку
+      window.netlifyIdentity.on("login", () => {
+        window.location.href = "/admin/#/";
+      });
+    }
+  </script>
+</body>
+</html>
