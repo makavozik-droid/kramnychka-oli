@@ -11,7 +11,29 @@
 
   <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
 
+    // ОЦЕ ГОЛОВНЕ: обробка recovery
+    window.netlifyIdentity.on("open", () => {
+      const hash = window.location.hash;
+      if (hash && hash.includes("recovery_token")) {
+        window.netlifyIdentity.open("recovery");
+      }
+    });
+  }
+</script>
+    <script>
+        DecapCMS.init();
+    </script>
+    
   <script>
     // Важливо для інвайтів і нормального логіну в Decap
     if (window.netlifyIdentity) {
