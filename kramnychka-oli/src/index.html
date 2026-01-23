@@ -8,6 +8,15 @@
   <link rel="stylesheet" href="./css/styles.css"/>
 </head>
 <body>
+    <script>
+  (function () {
+    const h = window.location.hash || "";
+    if (h.includes("recovery_token") || h.includes("invite_token")) {
+      window.location.replace("/admin/" + h);
+    }
+  })();
+</script>
+
   <header class="header">
     <a class="logo" href="./index.html">Крамничка Олі</a>
 
