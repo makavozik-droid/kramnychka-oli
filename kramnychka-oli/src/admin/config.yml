@@ -4,7 +4,7 @@ backend:
 
 publish_mode: editorial_workflow
 
-media_folder: "src/content/uploads"
+media_folder: "kramnychka-oli/src/content/uploads"
 public_folder: "/content/uploads"
 
 locale: "uk"
@@ -15,7 +15,7 @@ collections:
     files:
       - name: "products"
         label: "Товари"
-        file: "src/content/products.json"
+        file: "kramnychka-oli/src/content/products.json"
         format: "json"
         editor:
           preview: false
@@ -43,7 +43,7 @@ collections:
 
       - name: "reviews"
         label: "Відгуки"
-        file: "src/content/reviews.json"
+        file: "kramnychka-oli/src/content/reviews.json"
         format: "json"
         editor:
           preview: false
