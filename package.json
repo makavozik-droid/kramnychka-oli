@@ -4,9 +4,9 @@
   "description": "Крамничка Олі — дипломний проєкт",
   "type": "module",
   "scripts": {
-  "build": "npx parcel build src/index.html src/catalog.html src/cart.html src/checkout.html src/thanks.html src/admin/index.html src/admin/recovery.html --public-url ./",
-  "postbuild": "node scripts/copy-admin-config.cjs"
-}
+    "build": "npx parcel build src/index.html src/catalog.html src/cart.html src/checkout.html src/thanks.html src/admin/index.html src/admin/recovery.html --public-url ./",
+    "postbuild": "node scripts/copy-admin-config.cjs"
+  },
   "devDependencies": {
     "parcel": "^2.10.0"
   }
