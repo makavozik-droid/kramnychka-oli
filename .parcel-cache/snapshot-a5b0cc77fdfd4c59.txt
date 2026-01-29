@@ -7,14 +7,14 @@
 79C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@swc\helpers\_\_throw134141805762630579 1
 76C:\Users\makav\projects\kramnychka-oli-clean\node_modules\json5\lib\parse.js134141805772371511 0
 64C:\Users\makav\projects\kramnychka-oli-clean\node_modules\dotenv134141805771888737 1
-57C:\Users\makav\projects\kramnychka-oli-clean\package.json134141808748505116 0
+57C:\Users\makav\projects\kramnychka-oli-clean\package.json134141834866238560 0
 79C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel\profiler\test134141805748937435 1
 112C:\Users\makav\projects\kramnychka-oli-clean\node_modules\lmdb\node_modules\node-addon-api\napi-inl.deprecated.h134141805774507221 0
 89C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\regions\TC.js134141805770929503 0
 68C:\Users\makav\projects\kramnychka-oli-clean\node_modules\base-x\src134141805765114167 1
 108C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel\source-map\parcel_sourcemap_node\artifacts134141805755673072 1
 100C:\Users\makav\projects\kramnychka-oli-clean\node_modules\lightningcss\node\browserslistToTargets.js134141805773366820 0
-76C:\Users\makav\projects\kramnychka-oli-clean\node_modules\.package-lock.json134141827034048803 0
+76C:\Users\makav\projects\kramnychka-oli-clean\node_modules\.package-lock.json134141835078384865 0
 108C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\features\css-deviceadaptation.js134141805766052609 0
 101C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\features\localecompare.js134141805767917251 0
 93C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel\utils\src\getCertificate.js134141805757262275 0
@@ -22,7 +22,7 @@
 88C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@swc\helpers\scripts\errors.js134141805764328137 0
 107C:\Users\makav\projects\kramnychka-oli-clean\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest6.c134141805774122166 0
 63C:\Users\makav\projects\kramnychka-oli-clean\src\css\styles.css134141805777404164 0
-62C:\Users\makav\projects\kramnychka-oli-clean\package-lock.json134141827033800536 0
+62C:\Users\makav\projects\kramnychka-oli-clean\package-lock.json134141835078045356 0
 97C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel\transformer-babel\lib\babel7.js134141805755851620 0
 101C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\features\web-bluetooth.js134141805769251650 0
 96C:\Users\makav\projects\kramnychka-oli-clean\node_modules\msgpackr\dist\index-no-eval.min.js.map134141805775103497 0
@@ -66,7 +66,7 @@
 103C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\features\css-caret-color.js134141805765939007 0
 96C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\features\progress.js134141805768420169 0
 66C:\Users\makav\projects\kramnychka-oli-clean\node_modules\escalade134141805772045081 1
-57C:\Users\makav\projects\kramnychka-oli-clean\node_modules134141827033218541 1
+57C:\Users\makav\projects\kramnychka-oli-clean\node_modules134141835077491387 1
 75C:\Users\makav\projects\kramnychka-oli-clean\node_modules\parcel\lib\bin.js134141805775786388 0
 99C:\Users\makav\projects\kramnychka-oli-clean\node_modules\node-gyp-build-optional-packages\index.js134141805775494353 0
 89C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\regions\VC.js134141805771081858 0
@@ -132,7 +132,7 @@
 70C:\Users\makav\projects\kramnychka-oli-clean\node_modules\browserslist134141805765267312 1
 96C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\features\fontface.js134141805767305379 0
 101C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@mischnic\json-sourcemap\dist\index.js.flow134141805744607231 0
-63C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@lmdb134141827033238544 1
+63C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@lmdb134141835077511466 1
 60C:\Users\makav\projects\kramnychka-oli-clean\src\js\badge.js134141805777429080 0
 87C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@swc\helpers\_\_object_spread134141805762455763 1
 122C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@swc\helpers\_\_class_static_private_field_spec_get\package.json134141805761692430 0
@@ -187,7 +187,7 @@
 76C:\Users\makav\projects\kramnychka-oli-clean\node_modules\picocolors\LICENSE134141805775816382 0
 80C:\Users\makav\projects\kramnychka-oli-clean\node_modules\commander\package.json134141805771660119 0
 83C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@swc\helpers\esm\index.js134141805764303722 0
-75C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@msgpackr-extract134141827033238544 1
+75C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@msgpackr-extract134141835077511466 1
 104C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\features\wasm-bulk-memory.js134141805769133857 0
 91C:\Users\makav\projects\kramnychka-oli-clean\node_modules\weak-lru-cache\tests\benchmark.js134141805777307875 0
 96C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel\core\test\fixtures\module-b.js134141805746683150 0
@@ -209,13 +209,13 @@
 80C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel\events\LICENSE134141805747155532 0
 108C:\Users\makav\projects\kramnychka-oli-clean\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\chacha8.c134141805773902046 0
 71C:\Users\makav\projects\kramnychka-oli-clean\node_modules\tslib\modules134141805776750299 1
-65C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel134141827033238544 1
+65C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel134141835077511466 1
 100C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@swc\helpers\cjs\_class_name_tdz_error.cjs134141805762988177 0
 70C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite134141805771285854 1
 67C:\Users\makav\projects\kramnychka-oli-clean\node_modules\lmdb\dist134141805774405807 1
 89C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\regions\UY.js134141805771071179 0
 109C:\Users\makav\projects\kramnychka-oli-clean\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mdb_stat.1134141805774032809 0
-62C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@swc134141827033228552 1
+62C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@swc134141835077491387 1
 83C:\Users\makav\projects\kramnychka-oli-clean\node_modules\semver\functions\valid.js134141805776493900 0
 94C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel\source-map\dist\node.js.flow134141805754975429 0
 111C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel\transformer-postcss\lib\PostCSSTransformer.js134141805756347906 0
@@ -1821,7 +1821,7 @@
 97C:\Users\makav\projects\kramnychka-oli-clean\node_modules\@parcel\runtime-browser-hmr\lib\loaders134141805749422098 1
 89C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\regions\GI.js134141805769990032 0
 89C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\regions\GL.js134141805769990032 0
-66C:\Users\makav\projects\kramnychka-oli-clean\dist\admin\config.yml134141805743677868 0
+66C:\Users\makav\projects\kramnychka-oli-clean\dist\admin\config.yml134141807032181770 0
 89C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\regions\GM.js134141805770002785 0
 89C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\regions\GN.js134141805770002785 0
 89C:\Users\makav\projects\kramnychka-oli-clean\node_modules\caniuse-lite\data\regions\GP.js134141805770012833 0
