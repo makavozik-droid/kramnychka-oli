@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
   branch: master
+  repo: makavozik-droid/kramnychka-oli
 
 media_folder: "src/content/uploads"
 public_folder: "/content/uploads"
