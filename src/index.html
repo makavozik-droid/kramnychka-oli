@@ -5,11 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Крамничка Олі — затишні речі</title>
   <meta name="description" content="Сімейна крамничка з теплими речами та товарами для дому й городу. Шостка." />
-
   <link rel="stylesheet" href="./css/styles.css"/>
 
-  <!-- ✅ ОБОВʼЯЗКОВО: Netlify Identity Widget -->
+  <!-- Netlify Identity Widget -->
   <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <script>
+    // ✅ Якщо користувач відкрив лінк з токеном (invite/recovery/confirmation),
+    // перекидаємо на /admin/ і зберігаємо hash, щоб саме там відкрилась правильна форма.
+    (function () {
+      function redirectTokenToAdmin() {
+        var hash = window.location.hash || "";
+        if (!hash) return;
+
+        var isToken =
+          hash.indexOf("invite_token") !== -1 ||
+          hash.indexOf("recovery_token") !== -1 ||
+          hash.indexOf("confirmation_token") !== -1;
+
+        if (!isToken) return;
+
+        // Якщо ми вже в /admin/ — не чіпаємо
+        if (window.location.pathname.indexOf("/admin") === 0) return;
+
+        window.location.replace("/admin/" + hash);
+      }
+
+      // Запускаємо відразу (навіть якщо identity ще не ініціалізований)
+      redirectTokenToAdmin();
+    })();
+  </script>
 </head>
 
 <body>
@@ -77,49 +102,5 @@
       <p class="muted">Скоро тут буде стрічка зі скрінами переписок 💬</p>
     </section>
   </main>
-
-  <!-- ✅ Логіка для invite/recovery/confirmation токенів -->
-  <script>
-    (function () {
-      function runIdentityFlow() {
-        if (!window.netlifyIdentity) return;
-
-        // інколи треба явний init
-        try { window.netlifyIdentity.init(); } catch (e) {}
-
-        const hash = window.location.hash || "";
-
-        // ✅ Invite (set password)
-        if (hash.includes("invite_token")) {
-          window.netlifyIdentity.open("signup");
-        }
-
-        // ✅ Password recovery
-        if (hash.includes("recovery_token")) {
-          window.netlifyIdentity.open("recovery");
-        }
-
-        // ✅ Email confirmation
-        if (hash.includes("confirmation_token")) {
-          window.netlifyIdentity.open("login");
-        }
-
-        // Після логіну ведемо в адмінку
-        window.netlifyIdentity.on("login", function () {
-          // щоб не було "петлі" — редіректимо тільки якщо ми НЕ в /admin/
-          if (!window.location.pathname.startsWith("/admin")) {
-            window.location.href = "/admin/";
-          }
-        });
-      }
-
-      // Чекаємо, поки відпрацює defer-скрипт і зʼявиться window.netlifyIdentity
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", runIdentityFlow);
-      } else {
-        runIdentityFlow();
-      }
-    })();
-  </script>
 </body>
 </html>
