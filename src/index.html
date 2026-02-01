@@ -1,23 +1,55 @@
 <!doctype html>
 <html lang="uk">
-  <script>
-  (function () {
-    const h = window.location.hash || "";
-    if (h.startsWith("#recovery_token=") || h.startsWith("#invite_token=")) {
-      window.location.replace("/admin/" + h);
-    }
-  })();
-</script>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Крамничка Олі — затишні речі</title>
   <meta name="description" content="Сімейна крамничка з теплими речами та товарами для дому й городу. Шостка." />
+
+  <!-- ✅ Netlify Identity widget (обовʼязково для invite/recovery) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   <link rel="stylesheet" href="./css/styles.css"/>
 </head>
+
 <body>
-    
+  <!-- ✅ Identity flow handler -->
+  <script>
+    function bootIdentity() {
+      if (!window.netlifyIdentity) return;
+
+      // init
+      window.netlifyIdentity.init();
+
+      const hash = window.location.hash || "";
+
+      // ✅ інвайт (set password)
+      if (hash.includes("invite_token")) {
+        window.netlifyIdentity.open("signup");
+      }
+      // ✅ відновлення паролю
+      else if (hash.includes("recovery_token")) {
+        window.netlifyIdentity.open("recovery");
+      }
+      // ✅ підтвердження email (якщо прилітає такий токен)
+      else if (hash.includes("confirmation_token")) {
+        window.netlifyIdentity.open("login");
+      }
+
+      // після входу — в адмінку
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+
+    // чекаємо DOM (надійно)
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", bootIdentity);
+    } else {
+      bootIdentity();
+    }
+  </script>
+
   <header class="header">
     <a class="logo" href="./index.html">Крамничка Олі</a>
 
@@ -25,10 +57,10 @@
       <a href="./catalog.html">Магазин</a>
       <a href="#about">Про нас</a>
       <a href="#reviews">Відгуки</a>
-      <a href="./cart.html" class="cartLink">
-  Кошик <span class="cartBadge" id="cartBadge" aria-label="Кількість товарів у кошику"></span>
-</a>
 
+      <a href="./cart.html" class="cartLink">
+        Кошик <span class="cartBadge" id="cartBadge" aria-label="Кількість товарів у кошику"></span>
+      </a>
     </nav>
 
     <a class="contact" href="https://t.me/shop_shostka" target="_blank" rel="noopener">Telegram</a>
@@ -46,9 +78,9 @@
 
       <div class="grid">
         <a class="cardLink" href="./catalog.html#care">🧺 Турбота про себе</a>
-<a class="cardLink" href="./catalog.html#rest">🌙 Для солодких снів та відпочинку</a>
-<a class="cardLink" href="./catalog.html#outdoor">🌦 На прогулянку та в негоду</a>
-<a class="cardLink" href="./catalog.html#garden">🌱 Господарські справи та город</a>
+        <a class="cardLink" href="./catalog.html#rest">🌙 Для солодких снів та відпочинку</a>
+        <a class="cardLink" href="./catalog.html#outdoor">🌦 На прогулянку та в негоду</a>
+        <a class="cardLink" href="./catalog.html#garden">🌱 Господарські справи та город</a>
       </div>
     </section>
 
@@ -67,6 +99,7 @@
         Я збираю кожну посилку власноруч, щоб ви отримали свої речі охайними та чистими.
         Відправляю щодня (крім неділі), щоб вам не довелося довго чекати.
       </p>
+
       <ul>
         <li><b>Нова Пошта</b> — для тих, хто чекає на обновки якнайшвидше.</li>
         <li><b>Укрпошта</b> — надійний та вигідний варіант.</li>
