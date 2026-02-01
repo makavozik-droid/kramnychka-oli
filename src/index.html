@@ -6,50 +6,13 @@
   <title>Крамничка Олі — затишні речі</title>
   <meta name="description" content="Сімейна крамничка з теплими речами та товарами для дому й городу. Шостка." />
 
-  <!-- ✅ Netlify Identity widget (обовʼязково для invite/recovery) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
   <link rel="stylesheet" href="./css/styles.css"/>
+
+  <!-- ✅ ОБОВʼЯЗКОВО: Netlify Identity Widget -->
+  <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
 <body>
-  <!-- ✅ Identity flow handler -->
-  <script>
-    function bootIdentity() {
-      if (!window.netlifyIdentity) return;
-
-      // init
-      window.netlifyIdentity.init();
-
-      const hash = window.location.hash || "";
-
-      // ✅ інвайт (set password)
-      if (hash.includes("invite_token")) {
-        window.netlifyIdentity.open("signup");
-      }
-      // ✅ відновлення паролю
-      else if (hash.includes("recovery_token")) {
-        window.netlifyIdentity.open("recovery");
-      }
-      // ✅ підтвердження email (якщо прилітає такий токен)
-      else if (hash.includes("confirmation_token")) {
-        window.netlifyIdentity.open("login");
-      }
-
-      // після входу — в адмінку
-      window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
-      });
-    }
-
-    // чекаємо DOM (надійно)
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", bootIdentity);
-    } else {
-      bootIdentity();
-    }
-  </script>
-
   <header class="header">
     <a class="logo" href="./index.html">Крамничка Олі</a>
 
@@ -57,7 +20,6 @@
       <a href="./catalog.html">Магазин</a>
       <a href="#about">Про нас</a>
       <a href="#reviews">Відгуки</a>
-
       <a href="./cart.html" class="cartLink">
         Кошик <span class="cartBadge" id="cartBadge" aria-label="Кількість товарів у кошику"></span>
       </a>
@@ -99,7 +61,6 @@
         Я збираю кожну посилку власноруч, щоб ви отримали свої речі охайними та чистими.
         Відправляю щодня (крім неділі), щоб вам не довелося довго чекати.
       </p>
-
       <ul>
         <li><b>Нова Пошта</b> — для тих, хто чекає на обновки якнайшвидше.</li>
         <li><b>Укрпошта</b> — надійний та вигідний варіант.</li>
@@ -116,5 +77,49 @@
       <p class="muted">Скоро тут буде стрічка зі скрінами переписок 💬</p>
     </section>
   </main>
+
+  <!-- ✅ Логіка для invite/recovery/confirmation токенів -->
+  <script>
+    (function () {
+      function runIdentityFlow() {
+        if (!window.netlifyIdentity) return;
+
+        // інколи треба явний init
+        try { window.netlifyIdentity.init(); } catch (e) {}
+
+        const hash = window.location.hash || "";
+
+        // ✅ Invite (set password)
+        if (hash.includes("invite_token")) {
+          window.netlifyIdentity.open("signup");
+        }
+
+        // ✅ Password recovery
+        if (hash.includes("recovery_token")) {
+          window.netlifyIdentity.open("recovery");
+        }
+
+        // ✅ Email confirmation
+        if (hash.includes("confirmation_token")) {
+          window.netlifyIdentity.open("login");
+        }
+
+        // Після логіну ведемо в адмінку
+        window.netlifyIdentity.on("login", function () {
+          // щоб не було "петлі" — редіректимо тільки якщо ми НЕ в /admin/
+          if (!window.location.pathname.startsWith("/admin")) {
+            window.location.href = "/admin/";
+          }
+        });
+      }
+
+      // Чекаємо, поки відпрацює defer-скрипт і зʼявиться window.netlifyIdentity
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", runIdentityFlow);
+      } else {
+        runIdentityFlow();
+      }
+    })();
+  </script>
 </body>
 </html>
