@@ -6,52 +6,24 @@
   <title>Крамничка Олі — затишні речі</title>
   <meta name="description" content="Сімейна крамничка з теплими речами та товарами для дому й городу. Шостка." />
   <link rel="stylesheet" href="./css/styles.css"/>
-
-  <!-- ✅ Netlify Identity Widget (ОБОВʼЯЗКОВО) -->
-  <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- ✅ Обробка invite/recovery токенів -->
+</head>
+<body>
   <script>
+    // ✅ Всі Identity-токени (з листів) мають оброблятися в /admin/
     (function () {
-      function handleIdentityTokens() {
-        if (!window.netlifyIdentity) return;
+      const hash = window.location.hash || "";
+      const hasIdentityToken =
+        hash.includes("invite_token") ||
+        hash.includes("recovery_token") ||
+        hash.includes("confirmation_token");
 
-        window.netlifyIdentity.init();
-
-        var hash = window.location.hash || "";
-
-        // invite flow (set password)
-        if (hash.indexOf("invite_token=") !== -1) {
-          window.netlifyIdentity.open("signup");
-        }
-
-        // password recovery flow
-        if (hash.indexOf("recovery_token=") !== -1) {
-          window.netlifyIdentity.open("recovery");
-        }
-
-        // email confirmation (інколи приходить так)
-        if (hash.indexOf("confirmation_token=") !== -1) {
-          window.netlifyIdentity.open("login");
-        }
-
-        // після логіну — в адмінку
-        window.netlifyIdentity.on("login", function () {
-          window.location.href = "/admin/";
-        });
-      }
-
-      // чекати, поки підвантажиться віджет
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", handleIdentityTokens);
-      } else {
-        handleIdentityTokens();
+      if (hasIdentityToken) {
+        // Важливо: не "open recovery" на головній, а редірект у /admin/
+        window.location.replace("/admin/" + hash);
       }
     })();
   </script>
-</head>
 
-<body>
   <header class="header">
     <a class="logo" href="./index.html">Крамничка Олі</a>
 
@@ -76,6 +48,7 @@
 
     <section class="sections">
       <h2>Розділи</h2>
+
       <div class="grid">
         <a class="cardLink" href="./catalog.html#care">🧺 Турбота про себе</a>
         <a class="cardLink" href="./catalog.html#rest">🌙 Для солодких снів та відпочинку</a>
