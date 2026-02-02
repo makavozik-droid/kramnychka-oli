@@ -3,22 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Відновлення доступу</title>
+  <title>Відновлення доступу — Крамничка Олі</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
-    if (window.netlifyIdentity) {
+    (function () {
+      if (!window.netlifyIdentity) return;
+
       window.netlifyIdentity.init();
 
-      // відкриваємо саме recovery-форму
-      window.netlifyIdentity.open("recovery");
+      const hash = window.location.hash || "";
 
-      // коли користувач увійшов/оновив пароль — кидаємо в адмінку
+      if (hash.includes("invite_token")) {
+        window.netlifyIdentity.open("signup");
+      } else if (hash.includes("recovery_token")) {
+        window.netlifyIdentity.open("recovery");
+      } else if (hash.includes("confirmation_token")) {
+        window.netlifyIdentity.open("login");
+      } else {
+        // якщо зайшли сюди вручну
+        window.netlifyIdentity.open("login");
+      }
+
       window.netlifyIdentity.on("login", () => {
         window.location.href = "/admin/#/";
       });
-    }
+    })();
   </script>
 </body>
 </html>

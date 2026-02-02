@@ -4,14 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Адмін — Крамничка Олі</title>
+
+  <!-- Identity widget першим -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Netlify Identity -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-
   <script>
     (function () {
       if (!window.netlifyIdentity) return;
@@ -20,24 +17,30 @@
 
       const hash = window.location.hash || "";
 
-      // ✅ Лист-запрошення: встановити пароль
-      if (hash.includes("invite_token")) {
-        window.netlifyIdentity.open("signup");
-      }
-
-      // ✅ Лист відновлення: встановити НОВИЙ пароль (це саме те, що треба)
+      // Якщо в /admin прилетів токен — НЕ даємо Decap стартувати.
+      // Перекидаємо на окрему сторінку, де тільки recovery/signup логіка.
       if (hash.includes("recovery_token")) {
-        window.netlifyIdentity.open("recovery");
+        window.location.replace("/admin/recovery.html" + hash);
+        return;
       }
-
-      // ✅ Підтвердження email (інколи приходить так)
+      if (hash.includes("invite_token")) {
+        window.location.replace("/admin/recovery.html" + hash); // там же обробимо signup
+        return;
+      }
       if (hash.includes("confirmation_token")) {
-        window.netlifyIdentity.open("login");
+        window.location.replace("/admin/recovery.html" + hash);
+        return;
       }
 
-      // Після логіну лишаємось в /admin/
+      // Якщо токенів нема — підвантажуємо Decap
+      const s = document.createElement("script");
+      s.src = "https://unpkg.com/decap-cms@latest/dist/decap-cms.js";
+      s.defer = true;
+      document.body.appendChild(s);
+
+      // після логіну — лишаємось в /admin/#/
       window.netlifyIdentity.on("login", () => {
-        window.location.replace("/admin/");
+        window.location.href = "/admin/#/";
       });
     })();
   </script>

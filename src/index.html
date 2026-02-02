@@ -6,21 +6,33 @@
   <title>Крамничка Олі — затишні речі</title>
   <meta name="description" content="Сімейна крамничка з теплими речами та товарами для дому й городу. Шостка." />
   <link rel="stylesheet" href="./css/styles.css"/>
+
+  <!-- Netlify Identity widget (обов'язково) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
+
 <body>
   <script>
-    // ✅ Всі Identity-токени (з листів) мають оброблятися в /admin/
     (function () {
-      const hash = window.location.hash || "";
-      const hasIdentityToken =
-        hash.includes("invite_token") ||
-        hash.includes("recovery_token") ||
-        hash.includes("confirmation_token");
+      if (!window.netlifyIdentity) return;
 
-      if (hasIdentityToken) {
-        // Важливо: не "open recovery" на головній, а редірект у /admin/
-        window.location.replace("/admin/" + hash);
+      window.netlifyIdentity.init();
+
+      const hash = window.location.hash || "";
+
+      // Якщо токен прийшов на головну — відкриваємо правильну форму
+      if (hash.includes("invite_token")) {
+        window.netlifyIdentity.open("signup");
+      } else if (hash.includes("recovery_token")) {
+        window.netlifyIdentity.open("recovery");
+      } else if (hash.includes("confirmation_token")) {
+        window.netlifyIdentity.open("login");
       }
+
+      // Після логіну/рекавері — в адмінку Decap
+      window.netlifyIdentity.on("login", () => {
+        window.location.href = "/admin/#/";
+      });
     })();
   </script>
 
@@ -48,7 +60,6 @@
 
     <section class="sections">
       <h2>Розділи</h2>
-
       <div class="grid">
         <a class="cardLink" href="./catalog.html#care">🧺 Турбота про себе</a>
         <a class="cardLink" href="./catalog.html#rest">🌙 Для солодких снів та відпочинку</a>
@@ -76,7 +87,6 @@
         <li><b>Нова Пошта</b> — для тих, хто чекає на обновки якнайшвидше.</li>
         <li><b>Укрпошта</b> — надійний та вигідний варіант.</li>
       </ul>
-
       <p class="muted">
         Ви можете оплатити замовлення одразу на картку або вже на пошті після огляду —
         як вам спокійніше.
