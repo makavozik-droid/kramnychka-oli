@@ -2,60 +2,38 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Адмін — Крамничка Олі</title>
 
   <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script defer src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 </head>
-
 <body>
   <script>
     (function () {
-      function openRightFormFromHash() {
-        var hash = window.location.hash || "";
-
+      function initAdmin() {
         if (!window.netlifyIdentity) return;
 
         window.netlifyIdentity.init();
 
-        // Decap + Netlify Identity очікують токени в URL hash.
-        // Якщо є recovery_token → відкриваємо recovery.
-        if (hash.indexOf("recovery_token") !== -1) {
+        var hash = window.location.hash || "";
+
+        // якщо прийшли з recovery_link прямо в /admin/
+        if (hash.indexOf("recovery_token=") !== -1) {
           window.netlifyIdentity.open("recovery");
-          return;
         }
 
-        // Якщо є invite_token → це set password/signup
-        if (hash.indexOf("invite_token") !== -1) {
-          window.netlifyIdentity.open("signup");
-          return;
-        }
-
-        // confirmation_token зазвичай веде на login
-        if (hash.indexOf("confirmation_token") !== -1) {
-          window.netlifyIdentity.open("login");
-          return;
-        }
-
-        // Інакше звичайний вхід
-        window.netlifyIdentity.open("login");
-      }
-
-      // Коли завантажився віджет — відкриваємо правильну форму
-      function whenIdentityReady(cb) {
-        if (window.netlifyIdentity) return cb();
-        setTimeout(function () { whenIdentityReady(cb); }, 50);
-      }
-
-      whenIdentityReady(function () {
-        openRightFormFromHash();
-
-        // Після логіну лишаємося в /admin/
+        // після логіну лишаємось в /admin/
         window.netlifyIdentity.on("login", function () {
-          window.location.replace("/admin/");
+          window.location.href = "/admin/";
         });
-      });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAdmin);
+      } else {
+        initAdmin();
+      }
     })();
   </script>
 </body>
