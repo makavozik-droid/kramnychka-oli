@@ -4,45 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Адмін — Крамничка Олі</title>
-
-  <!-- Identity widget першим -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <script>
-    (function () {
-      if (!window.netlifyIdentity) return;
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 
+  <script>
+    if (window.netlifyIdentity) {
       window.netlifyIdentity.init();
 
-      const hash = window.location.hash || "";
-
-      // Якщо в /admin прилетів токен — НЕ даємо Decap стартувати.
-      // Перекидаємо на окрему сторінку, де тільки recovery/signup логіка.
-      if (hash.includes("recovery_token")) {
-        window.location.replace("/admin/recovery.html" + hash);
-        return;
-      }
-      if (hash.includes("invite_token")) {
-        window.location.replace("/admin/recovery.html" + hash); // там же обробимо signup
-        return;
-      }
-      if (hash.includes("confirmation_token")) {
-        window.location.replace("/admin/recovery.html" + hash);
-        return;
+      // ✅ якщо /admin/ відкрито з recovery_token — відкриваємо recovery форму
+      if (window.location.hash && window.location.hash.includes("recovery_token=")) {
+        window.netlifyIdentity.open("recovery");
       }
 
-      // Якщо токенів нема — підвантажуємо Decap
-      const s = document.createElement("script");
-      s.src = "https://unpkg.com/decap-cms@latest/dist/decap-cms.js";
-      s.defer = true;
-      document.body.appendChild(s);
-
-      // після логіну — лишаємось в /admin/#/
+      // ✅ після логіну — у /admin/
       window.netlifyIdentity.on("login", () => {
-        window.location.href = "/admin/#/";
+        document.location.href = "/admin/";
       });
-    })();
+    }
   </script>
 </body>
 </html>
