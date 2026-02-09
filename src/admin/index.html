@@ -13,14 +13,19 @@
     if (window.netlifyIdentity) {
       window.netlifyIdentity.init();
 
-      // ✅ якщо /admin/ відкрито з recovery_token — відкриваємо recovery форму
-      if (window.location.hash && window.location.hash.includes("recovery_token=")) {
+      const hash = window.location.hash || "";
+
+      if (hash.includes("recovery_token")) {
         window.netlifyIdentity.open("recovery");
       }
 
-      // ✅ після логіну — у /admin/
+      if (hash.includes("invite_token")) {
+        window.netlifyIdentity.open("signup");
+      }
+
+      // ✅ РЕДІРЕКТ ТІЛЬКИ ПІСЛЯ РЕАЛЬНОГО LOGIN
       window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
+        window.location.replace("/admin/");
       });
     }
   </script>
