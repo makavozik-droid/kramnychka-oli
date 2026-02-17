@@ -7,24 +7,20 @@
 </head>
 <body>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   <script>
     (function () {
-      var hash = window.location.hash || "";
-
       if (!window.netlifyIdentity) return;
 
+      // ВАЖЛИВО: токен recovery приходить у hash (#recovery_token=...)
+      // Віджет сам підхоплює його, якщо ми просто відкриємо login/signup модалку.
       window.netlifyIdentity.init();
 
-      // відкриваємо recovery тільки якщо реально є токен
-      if (hash.includes("recovery_token")) {
-        window.netlifyIdentity.open("recovery");
-      } else if (hash.includes("invite_token")) {
-        window.netlifyIdentity.open("signup");
-      } else {
-        window.netlifyIdentity.open("login");
-      }
+      // відкриваємо модалку (без "recovery"!)
+      // цього достатньо, щоб віджет побачив recovery_token у hash
+      window.netlifyIdentity.open("login");
 
-      // коли залогінились — йдемо в CMS
+      // після успішного логіну/оновлення пароля — переходимо в CMS
       window.netlifyIdentity.on("login", function () {
         window.location.replace("/admin/#/");
       });
