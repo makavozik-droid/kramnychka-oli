@@ -7,28 +7,25 @@
   <meta name="description" content="Сімейна крамничка з теплими речами та товарами для дому й городу. Шостка." />
   <link rel="stylesheet" href="./css/styles.css"/>
 
-  <!-- ✅ Netlify Identity widget (обов'язково) -->
+  <!-- Netlify Identity Widget (має бути в <head>) -->
   <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- ✅ Redirect tokens to /admin/ -->
+  <!-- Redirect recovery/invite token to a safe page (без Decap router #/) -->
   <script>
     (function () {
       var hash = window.location.hash || "";
-      if (
-        hash.includes("recovery_token") ||
-        hash.includes("invite_token") ||
-        hash.includes("confirmation_token")
-      ) {
-        // кидаємо токен туди, де його реально обробить адмінка
-        window.location.replace("/admin/" + hash);
+      if (hash.includes("recovery_token") || hash.includes("invite_token")) {
+        // ВАЖЛИВО: ведемо на окрему сторінку, де нема Decap router "#/"
+        window.location.replace("/admin/recovery.html" + hash);
       }
     })();
   </script>
 </head>
-<body>
 
+<body>
   <header class="header">
     <a class="logo" href="./index.html">Крамничка Олі</a>
+
     <nav class="nav">
       <a href="./catalog.html">Магазин</a>
       <a href="#about">Про нас</a>
@@ -37,11 +34,11 @@
         Кошик <span class="cartBadge" id="cartBadge" aria-label="Кількість товарів у кошику"></span>
       </a>
     </nav>
+
     <a class="contact" href="https://t.me/shop_shostka" target="_blank" rel="noopener">Telegram</a>
   </header>
 
   <main class="container">
-    <!-- ваш контент без змін -->
     <section class="hero">
       <h1>Одяг, у якому затишно</h1>
       <p class="muted">Від моєї полиці — до вашого дому. Шостка 💛</p>
@@ -50,6 +47,7 @@
 
     <section class="sections">
       <h2>Розділи</h2>
+
       <div class="grid">
         <a class="cardLink" href="./catalog.html#care">🧺 Турбота про себе</a>
         <a class="cardLink" href="./catalog.html#rest">🌙 Для солодких снів та відпочинку</a>
@@ -77,6 +75,7 @@
         <li><b>Нова Пошта</b> — для тих, хто чекає на обновки якнайшвидше.</li>
         <li><b>Укрпошта</b> — надійний та вигідний варіант.</li>
       </ul>
+
       <p class="muted">
         Ви можете оплатити замовлення одразу на картку або вже на пошті після огляду —
         як вам спокійніше.
@@ -88,6 +87,5 @@
       <p class="muted">Скоро тут буде стрічка зі скрінами переписок 💬</p>
     </section>
   </main>
-
 </body>
 </html>

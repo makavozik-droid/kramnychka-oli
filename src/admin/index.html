@@ -4,39 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Адмін — Крамничка Олі</title>
-
-  <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script defer src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-
-  <script>
-    window.addEventListener("load", function () {
-      if (!window.netlifyIdentity) return;
-
-      window.netlifyIdentity.init();
-
-      var hash = window.location.hash || "";
-
-      // ✅ якщо прийшли з recovery/invite/confirmation — відкриваємо відповідну форму
-      if (hash.includes("recovery_token")) window.netlifyIdentity.open("recovery");
-      if (hash.includes("invite_token")) window.netlifyIdentity.open("signup");
-      if (hash.includes("confirmation_token")) window.netlifyIdentity.open("login");
-
-      // ✅ якщо користувач вже залогінений — закриваємо модалку і лишаємось в адмінці
-      window.netlifyIdentity.on("init", function (user) {
-        if (user) window.netlifyIdentity.close();
-      });
-
-      // ✅ після логіну: важливо лишитись саме на /admin/#/ (Decap роутинг)
-      window.netlifyIdentity.on("login", function () {
-        window.netlifyIdentity.close();
-        window.location.replace("/admin/#/");
-      });
-
-      window.netlifyIdentity.on("logout", function () {
-        window.location.replace("/admin/#/");
-      });
-    });
-  </script>
 </head>
-<body></body>
+<body>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+</body>
 </html>
